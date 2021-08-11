@@ -1,106 +1,216 @@
-<!doctype html>
-<html>
-<head>
-  <meta http-equiv="content-type" content="txt/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y=" crossorigin="anonymous">
-  <title>缩短网址</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      cursor: default;
+/**
+ *  自定义网站配置 
+ */
+const config = {
+  title: "正经导航",                 //write your website title
+  subtitle: "", //write your website subtitle
+  logo_icon: "cloud",               //select your logo by semantic-ui icon (you can get more msg in:https://semantic-ui.com/elements/icon.html)
+  hitokoto:false,                     //use hitokoto or not
+  search:true,                        //enable search function
+  search_engine:[                     //choose search engine which you use
+    {
+      name:"百 度",
+      template:"https://www.baidu.com/s?wd=$s"
+    },
+    {
+      name:"谷 歌",
+      template:"https://www.google.com/search?q=$s"
+    },
+    {
+      name:"必 应",
+      template:"https://www.bing.com/search?q=$s"
+    },
+  ],
+  selling_ads: false,                  //Selling your domain or not.(turning on may be helpful for selling this domain by showing some ads.)
+  sell_info:{
+    domain:"example.com",
+    price:500,                        //domain price
+    mon_unit:"yen sign",              //monetary unit 
+    contact:[                         //how to contact you
+      {
+        type:"envelope",               //contact type ("weixin","qq","telegram plane","envelope" or "phone")
+        content:"info@example.com"
+      }
+    ]                        
+  },
+  lists: [                            //Url list
+    {
+      name:"京东",
+      icon:"yen sign",
+      list:[
+        {
+          url:"https://coppea2.kooldns.cn/",
+          name:"R4S",
+          desc:"软路由"
+        },
+        {
+          url:"https://www.toolsdaquan.com/ipcheck/",
+          name:"GFW",
+          desc:"ip可用性检测"
+        },
+        {
+          url:"https://sharenote.app/",
+          name:"在线笔记",
+          desc:"笔记分享"
+        },
+        {
+          url:"https://github.com/",
+          name:"github",
+          desc:"程序员集散地"
+        },
+      ]
+    },
+    {
+      name:"学习",
+      icon:"graduation cap",
+      list:[
+        {
+          url:"https://www.avast.com/zh-cn/random-password-generator/",
+          name:"随机密码",
+          desc:"官方密码生成"
+        },
+        {
+          url:"https://pdfmyurl.com/",
+          name:"PDF生成",
+          desc:"URL转PDF"
+        },
+        {
+          url:"https://www.boce.com/",
+          name:"ip万能测试",
+          desc:"域名污染dns测试"
+        },
+        {
+          url:"https://10minutesemail.net/",
+          name:"临时邮箱",
+          desc:"10分钟临时教育邮箱"
+        },
+      ]
     }
-    html, body {
-      height: 100%;
-    }
-    body {
-      display: -webkit-box;
-      display: flex;
-      -webkit-box-align: center;
-      align-items: center;
-      -webkit-box-pack: center;
-      justify-content: center;
-      vertical-align: center;
-      flex-wrap: wrap;
-      align-content: center;
+  ]
+}
+const el = (tag, attrs, content) => `<${tag} ${attrs.join(" ")}>${content}</${tag}>`;
 
-      color: #2a2b2c;
-      background-color: #ebedee;
-      overflow: hidden;
+async function handleRequest(request) {
+  const init = {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+    },
+  }
+  return new Response(renderHTML(renderIndex(),config.selling_ads? renderSeller() :null), init);
+}
+addEventListener('fetch', event => {
+  return event.respondWith(handleRequest(event.request))
+})
+
+/*通过分析链接 实时获取favicon
+* @url 需要分析的Url地址
+*/
+function getFavicon(url){
+  if(url.match(/https{0,1}:\/\//)){
+    //return "https://ui-avatars.com/api/?bold=true&size=36&background=0D8ABC&color=fff&rounded=true&name=" + url.split('//')[1];
+    return "https://www.google.cn/s2/favicons?sz=64&domain_url=" + url;
+  }else{
+    //return "https://ui-avatars.com/api/?bold=true&size=36&background=0D8ABC&color=fff&rounded=true&name=" + url;
+    return "https://www.google.cn/s2/favicons?sz=64&domain_url=http://" + url;
+  } 
+}
+
+/** Render Functions
+ *  渲染模块函数
+ */
+
+function renderIndex(){
+  const footer = el('footer',[],el('div',['class="footer"'],'Powered by' + el('a',['class="ui label"','href="https://github.com/coppea"','target="_blank"'],el('i',['class="github icon"'],"") + 'coppea') ));
+  return renderHeader() + renderMain() + footer;
+}
+
+function renderHeader(){
+  const item = (template,name) => el('a',['class="item"',`data-url="${template}"`],name);
+
+  var nav = el('div',['class="ui large secondary inverted menu"'],el('div',['class="item"'],el('p',['id="hitokoto"'],'条条大路通罗马')))
+  var title = el('h1',['class="ui inverted header"'],el('i',[`class="${config.logo_icon} icon"`],"") + el('div',['class="content"'],config.title + el('div',['class="sub header"'],config.subtitle)));
+  var menu = el('div',['id="sengine"','class="ui bottom attached tabular inverted secondary menu"'],el('div',['class="header item"'],'&nbsp;') + config.search_engine.map((link,key) =>{
+    if(key == 0){
+      return el('a',['class="active item"',`data-url="${link.template}"`],link.name);
+    }else{
+      return item(link.template,link.name);
     }
-    .card {
-      background-color: transparent;
-      width: 768px;
-    }
-    .card-text {
-      text-align: center;
-    }
-    .card-text > a {
-      text-decoration: none;
-      color: #007bff;
-    }
-    .card-text > a {
-      cursor: pointer;
-    }
-    .form-control {
-        cursor: auto;
-    }
-    @media (max-width: 769px) {
-      .card {
-        width: 80%;
-      }
-    }
-    @media (max-width: 420px) {
-      .card {
-        width: 95%;
-      }
-    }
-    @media (prefers-color-scheme: dark) { 
-      body {
-        color: #d9d9d9; 
-        background: #1b1b1b;
-      }
-      .card {
-        background-color: #252d38;
-      }
-    } 
-  </style>
-</head>
-<body>
-  <div class="card">
-    <h5 class="card-header">缩短网址 !</h5>
-    <div class="card-body">
-      <h5 class="card-title">请输入长链接 :</h5>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="例如：baidu.com" id="text">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button" onclick='shorturl()' id="searchbtn">生成</button>
-        </div>
-      </div>    
-      <p id="notice"></p>             
-    </div>
-  </div>
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Result</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="result">No result</div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick='copyurl("result")' data-toggle="popover" data-placement="bottom" data-content="复制完成">复制</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>    
-        </div>
-      </div>
-    </div>
-  </div>         
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha256-WqU1JavFxSAMcLP2WIOI+GB2zWmShMI82mTpLDcqFUg=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/url-shorten-worker@1.0.5/main.js" crossorigin="anonymous"></script>
-</body>
-</html>
+  }).join(""))
+  var input = el('div',['class="ui left corner labeled right icon fluid large input"'],el('div',['class="ui left corner label"'],el('img',['id="search-fav"','class="left floated avatar ui image"','src="https://www.baidu.com/favicon.ico"'],"")) + el('input',['id="searchinput"','type="search"','placeholder="搜索你想要知道的……"','autocomplete="off"'],"") + el('i',['class="inverted circular search link icon"'],""));
+  return el('header',[],el('div',['id="head"','class="ui inverted vertical masthead center aligned segment"'],(config.hitokoto ? el('div',['id="nav"','class="ui container"'],nav) : "") + el('div',['id="title"','class="ui text container"'],title + (config.search ? input + menu :"") + `${config.selling_ads ? '<div><a id="menubtn" class="red ui icon inverted button"><i class="heart icon"></i> 喜欢此域名 </a></div>' : ''}`)))
+}
+
+function renderMain() {
+  var main = config.lists.map((item) => {
+    const card = (url,name,desc)=> el('a',['class="card"',`href=${url}`,'target="_blank"'],el('div',['class="content"'],el('img',['class="left floated avatar ui image"',`src=${getFavicon(url)}`],"") + el('div',['class="header"'],name) + el('div',['class="meta"'],desc)));
+    const divider = el('h4',['class="ui horizontal divider header"'],el('i',[`class="${item.icon} icon"`],"")+item.name);
+
+    var content = el('div',['class="ui four stackable cards"'],item.list.map((link) =>{
+      return card(link.url,link.name,link.desc);
+    }).join(""));
+
+    return el('div',['class="ui basic segment"'],divider + content);
+  }).join("");
+  
+  return el('main',[],el('div',['class="ui container"'],main));
+}
+
+function renderSeller() {
+  const item = (type,content) => el('div',['class="item"'],el('i',[`class="${type} icon"`],"") + el('div',['class="content"'],content));
+  var title = el('h1',['class="ui yellow dividing header"'],el('i',['class="gem outline icon"'],"") + el('div',['class="content"'],config.sell_info.domain + ' 正在出售'));
+  var action = el('div',['class="actions"'],el('div',['class="ui basic cancel inverted button"'],el('i',['class="reply icon"'],"") + '返回'));
+
+  var contact = config.sell_info.contact.map((list) => {
+    return item(list.type,list.content);
+  }).join("");
+  var column = el('div',['class="column"'],el('h3',['class="ui center aligned icon inverted header"'],el('i',['class="circular envelope open outline grey inverted icon"'],"") + '联系我') + el('div',['class="ui relaxed celled large list"'],contact));
+  var price = el('div',['class="column"'],el('div',['class="ui large yellow statistic"'],el('div',['class="value"'],el('i',[`class="${config.sell_info.mon_unit} icon"`],"") + config.sell_info.price)));
+  var content = el('div',['class="content"'],el('div',['class="ui basic segment"'],el('div',['class="ui two column stackable center aligned grid"'],el('div',['class="ui inverted vertical divider"'],'感兴趣？') + el('div',['class="middle aligned row"'],price + column))));
+
+  return el('div',['id="seller"','class="ui basic modal"'],title + content + action);
+}
+
+function renderHTML(index,seller) {
+  return `<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>${config.title} - ${config.subtitle}</title>
+      <link href="https://cdn.jsdelivr.net/npm/semantic-ui-css@2.4.1/semantic.min.css" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/gh/sleepwood/cf-worker-dir@0.1.1/style.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/semantic-ui-css@2.4.1/semantic.min.js"></script>
+      <link rel="shortcut icon" href="https://yanxuan.nosdn.127.net/56761fad551a0b988510a66af2840cea.png" />
+      <link rel="bookmark" href="https://yanxuan.nosdn.127.net/56761fad551a0b988510a66af2840cea.png" type="image/x-icon"　/>
+  </head>
+  <body>
+    ${index}
+    ${config.selling_ads ? seller : ''}
+    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+    <script>
+      $('#sengine a').on('click', function (e) {
+        $('#sengine a.active').toggleClass('active');
+        $(e.target).toggleClass('active');
+        $('#search-fav').attr('src',$(e.target).data('url').match(`+/https{0,1}:\/\/\S+\//+`)[0] + '/favicon.ico') ;
+      });
+      $('.search').on('click', function (e) {
+          var url = $('#sengine a.active').data('url');
+          url = url.replace(`+/\$s/+`,$('#searchinput').val());
+          window.open(url);
+      });
+      /* 鼠标聚焦时，回车事件 */
+      $("#searchinput").bind("keypress", function(){
+          if (event.keyCode == 13){
+          // 触发需要调用的方法
+          $(".search").click();
+          }
+      });
+      $('#menubtn').on('click', function (e) {
+          $('#seller').modal('show');
+      });
+    </script>
+  </body>
+  </html>`
+}
