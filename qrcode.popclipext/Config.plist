@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Actions</key>
+	<array>
+		<dict>
+			<key>Image File</key>
+			<string>qrcode.png</string>
+			<key>Pass HTML</key>
+			<true/>
+			<key>Shell Script File</key>
+			<string>qrcode.sh</string>
+			<key>Stoppable</key>
+			<false/>
+			<key>Title</key>
+			<string>二维码</string>
+		</dict>
+	</array>
+	<key>Extension Description</key>
+	<string> QR image</string>
+	<key>Extension Identifier</key>
+	<string>com.coppea.popclip.extension.qrcode</string>
+	<key>Extension Name</key>
+	<string>二维码</string>
+	<key>Version</key>
+	<integer>2</integer>
+</dict>
+</plist>
