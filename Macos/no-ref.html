@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Url-Shorten-Worker</title>
+	<meta http-equiv="Refresh" content="1; url={Replace}" />
+	<meta name="referrer" content="no-referrer" />
+</head>
+
+<body>
+	<p>重定向中..<br /><a href="{Replace}">{Replace}</a></p>
+	<script type="text/javascript">
+		/* <![CDATA[ */
+		setTimeout('window.location.replace( "{Replace}" + window.location.hash );', 0 )
+
+/* ]]> */
+	</script>
+</body>
+
+</html>
