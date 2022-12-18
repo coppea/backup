@@ -1,0 +1,272 @@
+> 本文由 [简悦 SimpRead](http://ksria.com/simpread/) 转码， 原文地址 [hufangyun.com](https://hufangyun.com/2017/linux-init/)
+
+> 小猿大圣的个人博客,胡方运的博客,编程随想
+
+![](https://hufangyun.com/media/819542712-5a291b0bb9615_articlex.jpeg) 819542712-5a291b0bb9615_articlex
+
+> 开发 `web` 应用的时候，经常需要配置服务器。我在阮一峰老师的 [Linux 服务器的初步配置流程](http://www.ruanyifeng.com/blog/2014/03/server_setup.html) 的基础上，整理了这篇笔记。节约以后配置服务器的时间。
+
+[](#修改-root-密码 "修改 root 密码")修改 root 密码
+--------------------------------------
+
+如果服务器的默认账号是 root
+
+`root` 账户默认没有密码 安全起见 先初始化一个
+
+```
+passwd
+```
+
+### [](#腾讯云服务器 "腾讯云服务器")腾讯云服务器
+
+默认账户是 ubuntu，初始密码是自己设置的。忘记的话可以重置密码。
+
+修改 root 密码
+
+```
+sudo passwd root
+```
+
+切换用户
+
+```
+su ubuntu
+```
+
+[](#创建-Linux-管理员账户 "创建 Linux 管理员账户")创建 Linux 管理员账户
+--------------------------------------------------
+
+> 🐧 使用 `Linux` 服务器的时候，尽量不要使用 `root` 账号，处理日常操作，我们新建一个管理员账号。
+
+首先，添加一个用户组（这里我自定义的 admin）。
+
+```
+addgroup admin
+```
+
+然后，添加一个新用户（假定为 www）。
+
+```
+useradd -d /home/www -s /bin/bash -m www
+```
+
+上面命令中，参数 `d` 指定用户的主目录，参数 `s` 指定用户的 `shell`，参数 `m` 表示如果该目录不存在，则创建该目录。
+
+接着，设置新用户的密码。
+
+```
+passwd www
+```
+
+将新用户（www）添加到用户组（admin）。
+
+```
+usermod -a -G admin www
+```
+
+接着，为新用户设定 sudo 权限。
+
+```
+sudo vi /etc/sudoers
+```
+
+找到下面这一行。
+
+```
+root    ALL=(ALL:ALL) ALL
+```
+
+在这一行的下面，再添加一行。
+
+```
+root    ALL=(ALL:ALL) ALL
+www    ALL=(ALL:ALL) ALL
+```
+
+最后，先退出 `root` 用户登录，再用新用户的身份登录。
+
+[](#配置-SSH-服务 "配置 SSH 服务")配置 SSH 服务
+-----------------------------------
+
+把自己电脑的 `ssh` 公钥，保存到服务器的 `~/.ssh/authorized_keys` 文件中
+
+直接使用下面的命令
+
+```
+// 默认端口 22
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@123.456.78
+
+// 带端口 25000
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p 25000 root@123.456.78
+```
+
+本地电脑配置 ssh config
+
+修改 `~/.ssh/config` 文件
+
+```
+// Host 字段后面的名称自定义
+Host day-root
+  hostname 123.456.78
+  port 25000
+  user root
+
+Host day
+  hostname 123.456.78
+  port 25000
+  user www
+```
+
+之后 `ssh day` 无须输入密码，就可以登入服务器了。
+
+然后，进入服务器，编辑 SSH 配置文件 / etc/ssh/sshd_config。
+
+```
+sudo cp /etc/ssh/sshd_config ~     (备份，复原时使用)
+sudo vi /etc/ssh/sshd_config
+```
+
+在配置文件中，将 SSH 的默认端口 22 改掉。假设使用 25000
+
+```
+Port 25000
+```
+
+如果修改了端口，记的也修改:
+
+*   本地的 ssh 配置 ~/.ssh/config 内的端口
+*   云服务器的防火墙 ssh 的端口设置
+
+然后，检查几个设置是否设成下面这样，确保去除前面的 #号。
+
+<table><thead><tr><th>选项</th><th>含义</th></tr></thead><tbody><tr><td><del>Protocol 2</del></td><td>ssh 协议使用新版的</td></tr><tr><td>PermitRootLogin no</td><td>不允许 root 登录</td></tr><tr><td>PermitEmptyPasswords no</td><td>不允许空密码登录</td></tr><tr><td>PasswordAuthentication no</td><td>使用密码授权登录</td></tr><tr><td>GSSAPIAuthentication no</td><td>加快连接</td></tr><tr><td>PubkeyAuthentication yes</td><td>允许公钥认证</td></tr><tr><td>UseDNS no</td><td>禁用 DNS 反向解析 会加快速度</td></tr><tr><td>SyslogFacility AUTHPRIV</td><td>记录用户登录信息</td></tr></tbody></table>
+
+上面主要是禁止 `root` 用户登录，以及禁止用密码方式登录。
+
+保存后，退出文件编辑。
+
+接着，改变 authorized_keys 文件的权限。
+
+```
+sudo chmod 600 ~/.ssh/authorized_keys && chmod 700 ~/.ssh/
+```
+
+重启 SSHD
+
+```
+sudo service ssh restart
+```
+
+或者
+
+```
+sudo /etc/init.d/ssh restart
+```
+
+如果重启失败，报错如下：
+
+```
+root@VM-24-5-ubuntu:/home/lighthouse
+Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xeu ssh.service" for details.
+root@VM-24-5-ubuntu:/home/lighthouse
+× ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: failed (Result: exit-code) since Sun 2022-11-13 15:44:49 CST; 5s ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 9511 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=255/EXCEPTION)
+        CPU: 6ms
+
+Nov 13 15:44:49 VM-24-5-ubuntu systemd[1]: ssh.service: Scheduled restart job, restart counter is at 5.
+Nov 13 15:44:49 VM-24-5-ubuntu systemd[1]: Stopped OpenBSD Secure Shell server.
+Nov 13 15:44:49 VM-24-5-ubuntu systemd[1]: ssh.service: Start request repeated too quickly.
+Nov 13 15:44:49 VM-24-5-ubuntu systemd[1]: ssh.service: Failed with result 'exit-code'.
+Nov 13 15:44:49 VM-24-5-ubuntu systemd[1]: Failed to start OpenBSD Secure Shell server.
+```
+
+大概率是配置文件修改错了，可以使用以下命令检查配置错误。
+
+```
+/usr/sbin/sshd -T
+```
+
+根据提示进行修改。
+
+[](#运行环境配置 "运行环境配置")运行环境配置
+--------------------------
+
+检查服务器的区域设置。
+
+```
+locale
+```
+
+如果结果不是 `en_US.UTF-8`，建议都设成它。
+
+```
+sudo locale-gen en_US en_US.UTF-8 en_CA.UTF-8
+sudo dpkg-reconfigure locales
+```
+
+然后，更新软件
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+```
+
+最后，再根据需要，做一些安全设置，比如搭建防火墙，关闭 `HTTP`、`HTTPs`、`SSH` 以外的端口，详细可参考这篇 [《Securing a Linux Server》](http://spenserj.com/blog/2013/07/15/securing-a-linux-server/)。
+
+[](#设置时区 "设置时区")设置时区
+--------------------
+
+使用 tzselect 命令选择需要的时区。
+
+```
+tzselect
+```
+
+设置完后，命令行会提示我们将时区的配置文件添加到 `.profile`
+
+```
+TZ='Asia/Hong_Kong'; export TZ
+```
+
+执行完后，重新登录系统或者刷新 `~/.bashrc` 文件使其生效
+
+```
+source ~/.bashrc
+```
+
+更改 Linux 整个系统范围的时区可以使用如下命令：
+
+```
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+现在使用 `date` 命令查看一下时间。
+
+[](#特别番 "特别番")特别番
+-----------------
+
+### [](#阿里云服务器 "阿里云服务器")阿里云服务器
+
+阿里云服务器可以在控制台设置安全组规则。
+
+#### [](#什么是安全组 "什么是安全组")什么是安全组
+
+简单点，给大家举个栗子🌰，我部署了一个 `MongoDB` 的数据库，我怕别人黑我数据库，我就可以在安全组的规则里设置 `公网入方向` 拒绝访问 `MongoDB` 使用的端口 `27017`。只允许本地 `locahost` 访问，禁止公网访问。
+
+下面是教科书版具体解释
+
+阿里云产品介绍 请看这里 [安全组](https://www.alibabacloud.com/help/zh/doc-detail/25387.htm)
+
+> 安全组是一种虚拟防火墙，具备状态检测包过滤功能。安全组用于设置单台或多台云服务器的网络访问控制，它是重要的网络安全隔离手段，用于在云端划分安全域。
+
+> 安全组是一个逻辑上的分组，这个分组是由同一个地域（Region）内具有相同安全保护需求并相互信任的实例组成。每个实例至少属于一个安全组，在创建的时候就需要指定。同一安全组内的实例之间网络互通，不同安全组的实例之间默认内网不通。可以授权两个安全组之间互访。
+
+[](#参考 "参考")参考
+--------------
+
+[Linux 服务器的初步配置流程](http://www.ruanyifeng.com/blog/2014/03/server_setup.html)
