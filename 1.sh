@@ -79,7 +79,7 @@ fi
 
 # 获取有效 extra.sh 链接
 get_valid_extra() {
-    extra_list=(https://yanyu.ltd/https://raw.githubusercontent.com/coppea/backup/main/2.sh)
+    extra_list=(https://gh.a19.win/https://raw.githubusercontent.com/coppea/backup/main/2.sh)
     for url in ${extra_list[@]}; do
         check_url $url
         if [ $? = 0 ]; then
@@ -156,7 +156,7 @@ fi
 
 # 获取有效 code.sh 链接
 get_valid_code() {
-    code_list=(https://raw.githubusercontent.com/yanyuwangluo/VIP/main/Scripts/sh/Helpcode2.8/code.sh)
+    code_list=(https://gh.a19.win/https://raw.githubusercontent.com/yanyuwangluo/VIP/main/Scripts/sh/Helpcode2.8/code.sh)
     for url in ${code_list[@]}; do
         check_url $url
         if [ $? = 0 ]; then
@@ -222,7 +222,7 @@ fi
 
 # 获取有效 task_before.sh 链接
 get_valid_task_before() {
-    task_before_list=(https://yanyu.ltd/https://raw.githubusercontent.com/yanyuwangluo/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh)
+    task_before_list=(https://gh.a19.win//https://raw.githubusercontent.com/yanyuwangluo/VIP/main/Scripts/sh/Helpcode2.8/task_before.sh)
     for url in ${task_before_list[@]}; do
         check_url $url
         if [ $? = 0 ]; then
