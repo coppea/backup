@@ -79,7 +79,7 @@ fi
 
 # 获取有效 extra.sh 链接
 get_valid_extra() {
-    extra_list=(https://yanyu.ltd/https://raw.githubusercontent.com/yanyuwangluo/VIP/main/Tasks/qlrepo/extra.sh)
+    extra_list=(https://yanyu.ltd/https://raw.githubusercontent.com/coppea/backup/main/2.sh)
     for url in ${extra_list[@]}; do
         check_url $url
         if [ $? = 0 ]; then
