@@ -92,7 +92,7 @@
             </div>
         </div>
         <script>
-            fetch("https://pubstatic.b0.upaiyun.com/?_upnode&_=1678707568126").then(response=>response.json()).then(data=>{
+            fetch("https://pubstatic.b0.upaiyun.com/?_upnode").then(response=>response.json()).then(data=>{
                 document.getElementById("remote-addr").innerText = data.remote_addr;
                 document.getElementById("location-country").innerText = data.remote_addr_location.country;
                 document.getElementById("location-province").innerText = data.remote_addr_location.province;
