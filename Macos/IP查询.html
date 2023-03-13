@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IP查询</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: #f5f5f5
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+                margin-bottom: 20px
+            }
+
+            .box {
+                display: inline;
+                color: #666;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-shadow: 0 0 10px #ccc;
+                background-color: #fff;
+                text-align: center;
+                width: 45%;
+                margin-bottom: 20px;
+                transition: box-shadow .3s ease
+            }
+
+            .box:hover {
+                box-shadow: 0 0 10px #aaa
+            }
+
+            h3 {
+                margin-top: 0;
+                margin-bottom: 10px;
+                font-size: 20px;
+                color: #333
+            }
+
+            .result {
+                font-size: 16px;
+                margin-top: 10px;
+                text-align: center;
+                color: #333;
+                line-height: 1.5
+            }
+
+            .box span {
+                margin-right: 5px;
+                font-size: 16px;
+                color: #666
+            }
+
+            .box:first-of-type {
+                margin-right: 10px
+            }
+
+            @media only screen and (max-width: 768px) {
+                .box {
+                    width:80%
+                }
+
+                .box:first-of-type {
+                    margin-right: 0;
+                    margin-bottom: 10px
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+                <h3>这是您访问国内网站所使用的IP</h3>
+                <span id="remote-addr"></span>
+                <span id="location-country"></span>
+                <span id="location-province"></span>
+                <span id="location-city"></span>
+                <span id="location-isp"></span>
+            </div>
+            <div class="box">
+                <h3>这是您访问谷歌等国外网站所使用的IP</h3>
+                <div id="result"></div>
+            </div>
+        </div>
+        <script>
+            fetch("https://pubstatic.b0.upaiyun.com/?_upnode&_=1678707568126").then(response=>response.json()).then(data=>{
+                document.getElementById("remote-addr").innerText = data.remote_addr;
+                document.getElementById("location-country").innerText = data.remote_addr_location.country;
+                document.getElementById("location-province").innerText = data.remote_addr_location.province;
+                document.getElementById("location-isp").innerText = data.remote_addr_location.isp;
+                document.getElementById("location-city").innerText = data.remote_addr_location.city;
+            }
+            ).catch(error=>console.log(error));
+        </script>
+        <script type="text/javascript">
+            function callback(ip, location, asn, org) {
+                var html = `${ip} ${location}<br/>`
+                document.getElementById('result').innerHTML = html;
+            }
+        </script>
+        <script type="text/javascript" src="https://ip.ping0.cc/geo/jsonp/callback"></script>
+    </body>
+</html>
