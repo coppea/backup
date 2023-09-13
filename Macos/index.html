@@ -9,156 +9,514 @@
         <meta name="description" content="简单但实用的导航"/>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>"/>
         <link href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/zui/1.8.1/css/zui.min.css" rel="stylesheet" type="text/css"/>
-        <style>ul{padding:0}li{list-style:none}a:hover,a:active,a:focus{text-decoration:none}body{background-image:url(https://img10.360buyimg.com/ddimg/jfs/t1/114246/27/30509/74555/636c9e83Ed4c2420c/e512ab094a98f9ef.jpg);background-repeat:repeat;background-attachment:fixed;overflow-x:hidden;overflow-y:auto}i.icon,i.fa{margin-right:6px}.col,.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12,.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12,.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12{padding:0 5px}header{position:fixed;top:0;left:0;width:100%;z-index:100;height:50px;background:#FFF}header .logo{font-size:35px;height:50px;margin:0;font-weight:400;position:relative;z-index:99;border-bottom:1px solid #e8e8e8;background:#FFF;text-align:center}header .main{position:relative}header .nav{width:100%;margin-left:25px;background:#FFF;margin:0;overflow:hidden;transition:all .4s ease;-moz-transition:all .4s ease;-webkit-transition:all .4s ease;-o-transition:all .4s ease;position:absolute;top:-300px;left:0}header .showNav{top:50px;box-shadow:0 5px 5px rgba(204,204,204,.15);-moz-box-shadow:0 5px 5px rgba(204,204,204,.15)}header .nav li{font-size:16px}header .nav a{display:block;line-height:40px;font-size:16px;color:#959595;padding:0 25px;border-bottom:1px solid #f5f5f5}header .nav a:hover{border-color:#459df5;color:#459df5}header .nav-btn{position:fixed;border:0;background:transparent;top:0;left:10px;outline:0;margin-top:10px;z-index:100}header .nav-btn{left:inherit;right:10px}header .nav-btn .icon-line{display:block;margin:6px 0;width:25px;height:2px;background:#999;cursor:pointer;transition:all .4s ease;-moz-transition:all .4s ease;-webkit-transition:all .4s ease;-o-transition:all .4s ease}header .nav-btn .middle{margin:0 auto}header .animated2 .top{transform:translateY(8px) rotateZ(45deg);-ms-transform:translateY(8px) rotateZ(45deg);-moz-transform:translateY(8px) rotateZ(45deg);-webkit-transform:translateY(8px) rotateZ(45deg);-o-transform:translateY(8px) rotateZ(45deg)}header .animated2 .middle{width:0}header .animated2 .bottom{transform:translateY(-8px) rotateZ(-45deg);-ms-transform:translateY(-8px) rotateZ(-45deg);-moz-transform:translateY(-8px) rotateZ(-45deg);-webkit-transform:translateY(-8px) rotateZ(-45deg);-o-transform:translateY(-8px) rotateZ(-45deg)}#content{position:absolute;left:0;right:0;top:0;bottom:0}#content .content-box{padding-top:100px}.content-box{max-width:1200px;margin:0 auto;padding:0 10px}.item{width:100%}.item>.container-fluid{padding-top:0;margin-top:0}.item>.container-fluid .row{padding:10px 5px}.card-link{display:block;padding:10px 10px;border-radius:5px;overflow:hidden;margin-bottom:10px;background:rgba(0,0,0,.35);transition:all .2s ease-out;-moz-transition:all .2s ease-out;-webkit-transition:all .2s ease-out;-o-transition:all .2s ease-out}.card-link:hover{transform:translateY(-5px);-ms-transform:translateY(-5px);-moz-transform:translateY(-5px);-webkit-transform:translateY(-5px);-o-transform:translateY(-5px);box-shadow:4px 4px 10px rgba(204,204,204,.5);-moz-box-shadow:4px 4px 10px rgba(204,204,204,.5)}.card-tit{color:white;height:30px;font-size:17px;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:normal}.card-desc{color:#c3c3c3;font-size:12px;padding-top:10px;height:45px;overflow:hidden;text-overflow:ellipsis;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}#get-top{width:40px;height:40px;background:#03b8cf;color:#FFF;position:fixed;right:15px;bottom:55px;line-height:30px;text-align:center;font-size:30px;cursor:pointer;display:none;z-index:100}#get-top i{margin:0;font-size:20px}@media(min-width:768px){.col,.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12,.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12,.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12{padding:0 10px}@media(min-width:992px){header{height:60px;border-bottom:px solid #e8e8e8}header .main{padding:0 22px}header .logo{float:left;font-size:22px;margin:0;font-weight:400;border:0}header .logo a{display:block;line-height:60px;color:#484848;font-weight:400}header .nav{float:left;margin-left:25px;padding-top:0;height:100%;display:block;overflow:hidden;position:static;width:auto;box-shadow:none}header .nav li{float:left;font-size:16px}header .nav a{display:block;line-height:59px;color:#333;padding:0 18px;border-bottom:1px solid #e8e8e8}header .nav a:hover{border-color:#459df5;color:#459df5}.content-box{padding:0 10px;padding-top:61px}.item>.container-fluid .row{padding:0}.card-box .col-md-3{padding:0 7.5px}.card-link{margin-bottom:15px}@media(min-width:1200px){header .nav a{padding:0 25px}.content-box{padding:0 20px}.item>.container-fluid{padding:0;padding-top:50px;margin-top:-65px}}</style>
-    </head>
-    <body id="nav_body">
-        <header>
-            <div class="main">
-                <h1 class="logo">
-                    <a href="https://a19.win/">
-                    <img src="https://img10.360buyimg.com/ddimg/jfs/t1/93/19/20035/2844174/637f24eaE00589215/324c4bc51c8e557c.gif" width="80" height="80">
-                    </a>
-                </h1>
-                <!--顶部导航条-->
-                <nav class="nav">
-                    <ul>
-                        <li> <a href="https://gh.a19.win/" target="_blank">Github</a> </li>
-                        <li> <a href="https://tts.a19.win/" target="_blank">微软语音</a> </li>           
-                        <li> <a href="https://p.a19.win/" target="_blank">剪贴板</a> </li>
-                        <li> <a href="https://cdnjson.com/" target="_blank">国内图床</a> </li>
-                        <li> <a href="https://tg.a19.win/" target="_blank">图床</a> </li>
-                        <li> <a href="https://locimg.com/" target="_blank">大图床</a> </li>           
-                    </ul>
-                </nav>
-                <!--便携设备右上角菜单-->
-                <button class="nav-btn visible-xs visible-sm">
-                    <span class="icon-line top"></span>
-                    <span class="icon-line middle"></span>
-                    <span class="icon-line bottom"></span>
-                </button>
-            </div>
-        </header>
-        <div id="content">
-            <!--内容-->
-            <div class="container content-box">
-                <!--导航分类范例1，请根据自己的需求进行修改，复制整个section，并命名row-2-->
-                <section class="item card-box" id="row-1">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!--获取内容列表-->
-                            <div class="clearfix two-list-box">
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://www.toolsdaquan.com/ipcheck/" class="card-link" target="_blank">
-                                        <div class="card-tit">IP可用性检测工具</div>
-                                        <div class="card-desc">检测IP和端口在中国大陆以及海外区域的可用性</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://sharenote.app/" class="card-link" target="_blank">
-                                        <div class="card-tit">在线笔记</div>
-                                        <div class="card-desc">在线笔记分享生成图片</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://3650000.xyz/" class="card-link" target="_blank">
-                                        <div class="card-tit">随机图</div>
-                                        <div class="card-desc">随机图api</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://www.ooopn.com/tool/zlibrary/" class="card-link" target="_blank">
-                                        <div class="card-tit">数字图书馆</div>
-                                        <div class="card-desc">全世界最大的免费数字图书馆</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://imagestool.com/zh_CN/" class="card-link" target="_blank">
-                                        <div class="card-tit">在线处理图片</div>
-                                        <div class="card-desc">转换图片｜拼接图片｜图片加水印｜调整图片尺寸｜裁剪图片｜压缩图片｜分割图片｜视频转gif｜剪辑视频并转gif｜Gif转webp转apng</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://toolb.cn/" class="card-link" target="_blank">
-                                        <div class="card-tit">聚合工具</div>
-                                        <div class="card-desc">聚合工具箱</div>
-                                    </a>
-                                </div>
-                                 <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://tool.juheye.com//" class="card-link" target="_blank">
-                                        <div class="card-tit">聚合工具2</div>
-                                        <div class="card-desc">聚合工具箱大全</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://tool.lu/" class="card-link" target="_blank">
-                                        <div class="card-tit">在线工具</div>
-                                        <div class="card-desc">tool万能代码工具</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://uutool.cn/" class="card-link" target="_blank">
-                                        <div class="card-tit">在线工具2</div>
-                                        <div class="card-desc">万能代码工具2</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://10minutesemail.net/" class="card-link" target="_blank">
-                                        <div class="card-tit">临时邮箱</div>
-                                        <div class="card-desc">10分钟临时邮箱，包含教育邮箱</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://cn.office-converter.com/" class="card-link" target="_blank">
-                                        <div class="card-tit">在线转换器</div>
-                                        <div class="card-desc">转换视频, 音乐, 图像, PDF</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://fuliba123.net/" class="card-link" target="_blank">
-                                        <div class="card-tit">福利吧导航</div>
-                                        <div class="card-desc">万能导航</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://btfuk.icu" class="card-link" target="_blank">
-                                        <div class="card-tit">BT搜索</div>
-                                        <div class="card-desc">BT发布页</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://ys.lbbb.cc/" class="card-link" target="_blank">
-                                        <div class="card-tit">VIP影视解析</div>
-                                        <div class="card-desc">萝卜视频解析支持：优酷、爱奇艺、腾讯、芒果、乐视、搜狐、MP4、M3U8、FLV等等</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://learncat.cn/home" class="card-link" target="_blank">
-                                        <div class="card-tit">学习猫</div>
-                                        <div class="card-desc">学习汇总</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://xiaomark.com/tool" class="card-link" target="_blank">
-                                        <div class="card-tit">运营工具大全</div>
-                                        <div class="card-desc">共收录 16 个分类， 117 个运营工具</div>
-                                    </a>
-                                </div>
-                                <div class="col-md-3 col-sm-4 col-xs-6">
-                                    <a href="https://wantwords.net/" class="card-link" target="_blank">
-                                        <div class="card-tit">万词王</div>
-                                        <div class="card-desc">反向词典</div>
-                                    </a>
+        <style>
+            ul {
+                padding: 0
+            }
+
+            li {
+                list-style: none
+            }
+
+            a:hover,a:active,a:focus {
+                text-decoration: none
+            }
+
+            body {
+                background-image: url(https://img10.360buyimg.com/ddimg/jfs/t1/114246/27/30509/74555/636c9e83Ed4c2420c/e512ab094a98f9ef.jpg);
+                background-repeat: repeat;
+                background-attachment: fixed;
+                overflow-x: hidden;
+                overflow-y: auto
+            }
+
+            i.icon,i.fa {
+                margin-right: 6px
+            }
+
+            .col,.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12,.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12,.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12 {
+                padding: 0 5px
+            }
+
+            header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 100;
+                height: 50px;
+                background: #FFF
+            }
+
+            header .logo {
+                font-size: 35px;
+                height: 50px;
+                margin: 0;
+                font-weight: 400;
+                position: relative;
+                z-index: 99;
+                border-bottom: 1px solid #e8e8e8;
+                background: #FFF;
+                text-align: center
+            }
+
+            header .main {
+                position: relative
+            }
+
+            header .nav {
+                width: 100%;
+                margin-left: 25px;
+                background: #FFF;
+                margin: 0;
+                overflow: hidden;
+                transition: all .4s ease;
+                -moz-transition: all .4s ease;
+                -webkit-transition: all .4s ease;
+                -o-transition: all .4s ease;
+                position: absolute;
+                top: -300px;
+                left: 0
+            }
+
+            header .showNav {
+                top: 50px;
+                box-shadow: 0 5px 5px rgba(204,204,204,.15);
+                -moz-box-shadow: 0 5px 5px rgba(204,204,204,.15)
+            }
+
+            header .nav li {
+                font-size: 16px
+            }
+
+            header .nav a {
+                display: block;
+                line-height: 40px;
+                font-size: 16px;
+                color: #959595;
+                padding: 0 25px;
+                border-bottom: 1px solid #f5f5f5
+            }
+
+            header .nav a:hover {
+                border-color: #459df5;
+                color: #459df5
+            }
+
+            header .nav-btn {
+                position: fixed;
+                border: 0;
+                background: transparent;
+                top: 0;
+                left: 10px;
+                outline: 0;
+                margin-top: 10px;
+                z-index: 100
+            }
+
+            header .nav-btn {
+                left: inherit;
+                right: 10px
+            }
+
+            header .nav-btn .icon-line {
+                display: block;
+                margin: 6px 0;
+                width: 25px;
+                height: 2px;
+                background: #999;
+                cursor: pointer;
+                transition: all .4s ease;
+                -moz-transition: all .4s ease;
+                -webkit-transition: all .4s ease;
+                -o-transition: all .4s ease
+            }
+
+            header .nav-btn .middle {
+                margin: 0 auto
+            }
+
+            header .animated2 .top {
+                transform: translateY(8px) rotateZ(45deg);
+                -ms-transform: translateY(8px) rotateZ(45deg);
+                -moz-transform: translateY(8px) rotateZ(45deg);
+                -webkit-transform: translateY(8px) rotateZ(45deg);
+                -o-transform: translateY(8px) rotateZ(45deg)
+            }
+
+            header .animated2 .middle {
+                width: 0
+            }
+
+            header .animated2 .bottom {
+                transform: translateY(-8px) rotateZ(-45deg);
+                -ms-transform: translateY(-8px) rotateZ(-45deg);
+                -moz-transform: translateY(-8px) rotateZ(-45deg);
+                -webkit-transform: translateY(-8px) rotateZ(-45deg);
+                -o-transform: translateY(-8px) rotateZ(-45deg)
+            }
+
+            #content {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0
+            }
+
+            #content .content-box {
+                padding-top: 100px
+            }
+
+            .content-box {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 10px
+            }
+
+            .item {
+                width: 100%
+            }
+
+            .item>.container-fluid {
+                padding-top: 0;
+                margin-top: 0
+            }
+
+            .item>.container-fluid .row {
+                padding: 10px 5px
+            }
+
+            .card-link {
+                display: block;
+                padding: 10px 10px;
+                border-radius: 5px;
+                overflow: hidden;
+                margin-bottom: 10px;
+                background: rgba(0,0,0,.35);
+                transition: all .2s ease-out;
+                -moz-transition: all .2s ease-out;
+                -webkit-transition: all .2s ease-out;
+                -o-transition: all .2s ease-out
+            }
+
+            .card-link:hover {
+                transform: translateY(-5px);
+                -ms-transform: translateY(-5px);
+                -moz-transform: translateY(-5px);
+                -webkit-transform: translateY(-5px);
+                -o-transform: translateY(-5px);
+                box-shadow: 4px 4px 10px rgba(204,204,204,.5);
+                -moz-box-shadow: 4px 4px 10px rgba(204,204,204,.5)
+            }
+
+            .card-tit {
+                color: white;
+                height: 30px;
+                font-size: 17px;
+                font-weight: 700;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal
+            }
+
+            .card-desc {
+                color: #c3c3c3;
+                font-size: 12px;
+                padding-top: 10px;
+                height: 45px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: normal;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical
+            }
+
+            #get-top {
+                width: 40px;
+                height: 40px;
+                background: #03b8cf;
+                color: #FFF;
+                position: fixed;
+                right: 15px;
+                bottom: 55px;
+                line-height: 30px;
+                text-align: center;
+                font-size: 30px;
+                cursor: pointer;
+                display: none;
+                z-index: 100
+            }
+
+            #get-top i {
+                margin: 0;
+                font-size: 20px
+            }
+            .footer {
+             padding: 15px 20px 10px 20px;
+             border-top: 1px solid #d0d0d0;
+             background-color: #e8e8e8;
+             text-align: center;
+             font-size: 14px;
+              color: #5d5d5d;
+            }
+            @media(min-width: 768px) {
+                .col,.col-xs-1,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-10,.col-xs-11,.col-xs-12,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12,.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12,.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12 {
+                    padding:0 10px
+                }
+
+                @media(min-width: 992px) {
+                    header {
+                        height:60px;
+                        border-bottom: px solid #e8e8e8
+                    }
+
+                    header .main {
+                        padding: 0 22px
+                    }
+
+                    header .logo {
+                        float: left;
+                        font-size: 22px;
+                        margin: 0;
+                        font-weight: 400;
+                        border: 0
+                    }
+
+                    header .logo a {
+                        display: block;
+                        line-height: 60px;
+                        color: #484848;
+                        font-weight: 400
+                    }
+
+                    header .nav {
+                        float: left;
+                        margin-left: 25px;
+                        padding-top: 0;
+                        height: 100%;
+                        display: block;
+                        overflow: hidden;
+                        position: static;
+                        width: auto;
+                        box-shadow: none
+                    }
+
+                    header .nav li {
+                        float: left;
+                        font-size: 16px
+                    }
+
+                    header .nav a {
+                        display: block;
+                        line-height: 59px;
+                        color: #333;
+                        padding: 0 18px;
+                        border-bottom: 1px solid #e8e8e8
+                    }
+
+                    header .nav a:hover {
+                        border-color: #459df5;
+                        color: #459df5
+                    }
+
+                    .content-box {
+                        padding: 0 10px;
+                        padding-top: 61px
+                    }
+
+                    .item>.container-fluid .row {
+                        padding: 0
+                    }
+
+                    .card-box .col-md-3 {
+                        padding: 0 7.5px
+                    }
+
+                    .card-link {
+                        margin-bottom: 15px
+                    }
+
+                    @media(min-width: 1200px) {
+                        header .nav a {
+                            padding:0 25px
+                        }
+
+                        .content-box {
+                            padding: 0 20px
+                        }
+
+                        .item>.container-fluid {
+                            padding: 0;
+                            padding-top: 50px;
+                            margin-top: -65px
+                        }
+                    }
+                </style>
+            </head>
+            <body id="nav_body">
+                <header>
+                    <div class="main">
+                        <h1 class="logo">
+                            <a href="https://a19.win/">
+                                <img src="https://img10.360buyimg.com/ddimg/jfs/t1/93/19/20035/2844174/637f24eaE00589215/324c4bc51c8e557c.gif" width="80" height="80">
+                            </a>
+                        </h1>
+                        <!--顶部导航条-->
+                        <nav class="nav">
+                            <ul>
+                                <li>
+                                    <a href="https://gh.a19.win/" target="_blank">Github</a>
+                                </li>
+                                <li>
+                                    <a href="https://tts.a19.win/" target="_blank">微软语音</a>
+                                </li>
+                                <li>
+                                    <a href="https://p.a19.win/" target="_blank">剪贴板</a>
+                                </li>
+                                <li>
+                                    <a href="https://cdnjson.com/" target="_blank">国内图床</a>
+                                </li>
+                                <li>
+                                    <a href="https://tg.a19.win/" target="_blank">图床</a>
+                                </li>
+                                <li>
+                                    <a href="https://locimg.com/" target="_blank">大图床</a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!--便携设备右上角菜单-->
+                        <button class="nav-btn visible-xs visible-sm">
+                            <span class="icon-line top"></span>
+                            <span class="icon-line middle"></span>
+                            <span class="icon-line bottom"></span>
+                        </button>
+                    </div>
+                </header>
+                <div id="content">
+                    <!--内容-->
+                    <div class="container content-box">
+                        <!--导航分类范例1，请根据自己的需求进行修改，复制整个section，并命名row-2-->
+                        <section class="item card-box" id="row-1">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <!--获取内容列表-->
+                                    <div class="clearfix two-list-box">
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://www.toolsdaquan.com/ipcheck/" class="card-link" target="_blank">
+                                                <div class="card-tit">IP可用性检测工具</div>
+                                                <div class="card-desc">检测IP和端口在中国大陆以及海外区域的可用性</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://sharenote.app/" class="card-link" target="_blank">
+                                                <div class="card-tit">在线笔记</div>
+                                                <div class="card-desc">在线笔记分享生成图片</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://3650000.xyz/" class="card-link" target="_blank">
+                                                <div class="card-tit">随机图</div>
+                                                <div class="card-desc">随机图api</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://www.ooopn.com/tool/zlibrary/" class="card-link" target="_blank">
+                                                <div class="card-tit">数字图书馆</div>
+                                                <div class="card-desc">全世界最大的免费数字图书馆</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://imagestool.com/zh_CN/" class="card-link" target="_blank">
+                                                <div class="card-tit">在线处理图片</div>
+                                                <div class="card-desc">转换图片｜拼接图片｜图片加水印｜调整图片尺寸｜裁剪图片｜压缩图片｜分割图片｜视频转gif｜剪辑视频并转gif｜Gif转webp转apng</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://toolb.cn/" class="card-link" target="_blank">
+                                                <div class="card-tit">聚合工具</div>
+                                                <div class="card-desc">聚合工具箱</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://tool.juheye.com//" class="card-link" target="_blank">
+                                                <div class="card-tit">聚合工具2</div>
+                                                <div class="card-desc">聚合工具箱大全</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://tool.lu/" class="card-link" target="_blank">
+                                                <div class="card-tit">在线工具</div>
+                                                <div class="card-desc">tool万能代码工具</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://uutool.cn/" class="card-link" target="_blank">
+                                                <div class="card-tit">在线工具2</div>
+                                                <div class="card-desc">万能代码工具2</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://10minutesemail.net/" class="card-link" target="_blank">
+                                                <div class="card-tit">临时邮箱</div>
+                                                <div class="card-desc">10分钟临时邮箱，包含教育邮箱</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://cn.office-converter.com/" class="card-link" target="_blank">
+                                                <div class="card-tit">在线转换器</div>
+                                                <div class="card-desc">转换视频, 音乐, 图像, PDF</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://fuliba123.net/" class="card-link" target="_blank">
+                                                <div class="card-tit">福利吧导航</div>
+                                                <div class="card-desc">万能导航</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://btfuk.icu" class="card-link" target="_blank">
+                                                <div class="card-tit">BT搜索</div>
+                                                <div class="card-desc">BT发布页</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://ys.lbbb.cc/" class="card-link" target="_blank">
+                                                <div class="card-tit">VIP影视解析</div>
+                                                <div class="card-desc">萝卜视频解析支持：优酷、爱奇艺、腾讯、芒果、乐视、搜狐、MP4、M3U8、FLV等等</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://learncat.cn/home" class="card-link" target="_blank">
+                                                <div class="card-tit">学习猫</div>
+                                                <div class="card-desc">学习汇总</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://xiaomark.com/tool" class="card-link" target="_blank">
+                                                <div class="card-tit">运营工具大全</div>
+                                                <div class="card-desc">共收录 16 个分类， 117 个运营工具</div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-3 col-sm-4 col-xs-6">
+                                            <a href="https://wantwords.net/" class="card-link" target="_blank">
+                                                <div class="card-tit">万词王</div>
+                                                <div class="card-desc">反向词典</div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
-                <!--页脚-->
-                <footer class="footer">
-                 本站由<a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank" rel="noopener"><img class="”alignnone" src="https://img.sunlovely.com.cn/upyun_logo.png" alt="””" width="”50″" height="”18″" />提供CDN加速/云存储服务</a> </br>
-                </footer>
-            </div>
-            <!--内容区域-->
+                        </section>
+                        <!--页脚-->
+                        <footer class="footer">
+                            本站由
+                            <a href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referral" target="_blank" rel="noopener">
+                                <img class="”alignnone" src="https://img.sunlovely.com.cn/upyun_logo.png" alt="””" width="”50″" height="”18″"/>提供CDN加速/云存储服务
+                            </a>
+        </br></footer></div>
+        <!--内容区域-->
         </div>
         <div id="get-top" title="回到顶部">
             <i class="icon icon-arrow-up"></i>
@@ -204,5 +562,4 @@
                 $(this).toggleClass('animated2');
             });
         </script>
-    </body>
-</html>
+        </body></html>
